@@ -40,4 +40,10 @@ RUN echo "builder ALL=NOPASSWD: ALL" > /etc/sudoers.d/builder-nopasswd && \
 RUN echo "Defaults env_keep += \"ftp_proxy http_proxy https_proxy no_proxy\"" \
     > /etc/sudoers.d/env_keep && chmod 660 /etc/sudoers.d/env_keep
 
+# For debian/ubuntu, do not use dash.
+RUN which dash &> /dev/null && (\
+    echo "dash dash/sh boolean false" | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash) || \
+    echo "Skipping dash reconfigure (not applicable)" \
+
 ENTRYPOINT ["/kas/container-entrypoint"]
