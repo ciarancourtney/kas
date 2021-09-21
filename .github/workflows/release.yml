@@ -30,9 +30,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/siemens/kas/kas
-            ghcr.io/siemens/kas/kas:${{ env.RELEASE_VERSION }}
-            ghcr.io/siemens/kas/kas:latest-release
+            ghcr.io/${{ github.repository_owner }}/kas/kas
+            ghcr.io/${{ github.repository_owner }}/kas/kas:${{ env.RELEASE_VERSION }}
+            ghcr.io/${{ github.repository_owner }}/kas/kas:latest-release
       - name: Build kas-isar image
         uses: docker/build-push-action@v2
         with:
@@ -40,6 +40,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/siemens/kas/kas-isar
-            ghcr.io/siemens/kas/kas-isar:${{ env.RELEASE_VERSION }}
-            ghcr.io/siemens/kas/kas-isar:latest-release
+            ghcr.io/${{ github.repository_owner }}/kas/kas-isar
+            ghcr.io/${{ github.repository_owner }}/kas/kas-isar:${{ env.RELEASE_VERSION }}
+            ghcr.io/${{ github.repository_owner }}/kas/kas-isar:latest-release
