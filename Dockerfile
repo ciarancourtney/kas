@@ -27,7 +27,8 @@ RUN ln -s /kas/contrib/oe-git-proxy /usr/bin/
 ENV GIT_PROXY_COMMAND="oe-git-proxy" \
     NO_PROXY="*"
 
-RUN echo "builder ALL=NOPASSWD: ALL" > /etc/sudoers.d/builder-nopasswd && \
+RUN adduser --disabled-password builder && \
+    echo "builder ALL=NOPASSWD: ALL" > /etc/sudoers.d/builder-nopasswd && \
     chmod 660 /etc/sudoers.d/builder-nopasswd
 
 RUN echo "Defaults env_keep += \"ftp_proxy http_proxy https_proxy no_proxy\"" \
